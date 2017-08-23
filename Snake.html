@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Snake Test</title>
+	</head>
+  <script type="text/javascript" src="Engine/Game.js"></script>
+  <script type="text/javascript" src="Engine/Grid.js"></script>
+  <script type="text/javascript" src="Engine/GridElement.js"></script>
+  <script type="text/javascript" src="Engine/GridRectElement.js"></script>
+  <script type="text/javascript" src="Engine/GridElementCollection.js"></script>
+  <script type="text/javascript" src="Engine/GridRectangle.js"></script>
+  <script type="text/javascript" src="Engine/GridText.js"></script>
+  <script type="text/javascript" src="Implementation/Snake.js"></script>
+  <script type="text/javascript" src="Implementation/ScoreText.js"></script>
+  <script type="text/javascript" src="Implementation/SnakeTitleState.js"></script>
+  <script type="text/javascript" src="Implementation/SnakePlayState.js"></script>
+  <script type="text/javascript" src="Implementation/SnakeGameOverState.js"></script>
+  <script type="text/javascript" src="Implementation/SnakeGame.js"></script>
+  <script>
+    "use strict";
+    function main() {
+      var canvas = document.getElementById("rdouglascanada-SnakeGameCanvas");
+      var game = SnakeGame.createInstance({canvas:canvas});
+      
+      function mainLoop() {
+        game.update();
+        game.draw();
+        window.setTimeout(mainLoop, game.timeout);
+      }
+      
+      game.initElements();
+      game.showTitleScreen();
+      window.onkeydown = function (event) {
+        game.onKeyDown(event);
+      };
+      window.setTimeout(mainLoop, game.timeout);
+    }
+		document.addEventListener("DOMContentLoaded", main);
+	</script>
+	<body>
+    <canvas id="rdouglascanada-SnakeGameCanvas"/>
+	</body>
+</html>
